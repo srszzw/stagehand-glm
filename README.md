@@ -442,7 +442,7 @@ stagehand-python/              # 核心框架
 
 - 项目主页: [GitHub Repository](https://github.com/srszzw/stagehand-glm)
 - 问题反馈: [Issues](https://github.com/srszzw/stagehand-glm/issues)
-- 讨论交流: [Discussions](https://github.com/srszzw/stagehand-glm/discussions)
+- 联系邮箱: srszzw@163.com
 
 ---
 
