@@ -28,7 +28,7 @@
 
 ### 🧠 全面适配GLM生态
 - ✅ **GLM-4.5文本模型**: 智能理解页面结构和操作指令
-- ✅ **GLM-4.5V多模态**: 视觉理解复杂UI元素和验证码识别
+- ✅ **GLM-4.5V多模态**: 视觉理解复杂UI元素和验证码识别,实测GLM4.5V界面理解定位非常准确，点赞智谱GLM-4.5V!
 - ✅ **API完全兼容**: 无缝集成智谱AI的API服务
 - ⚠️ **其他模型**: OpenAI、Anthropic等模型兼容性待验证
 
@@ -58,7 +58,7 @@
 ```bash
 # 1. 克隆项目
 git clone https://github.com/srszzw/stagehand-glm.git
-cd stagehand-glm/stagehand-python
+cd stagehand-glm
 
 # 2. 安装Python 3.11+ (推荐使用uv)
 uv python install 3.11
