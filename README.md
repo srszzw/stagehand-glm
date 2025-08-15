@@ -72,6 +72,9 @@ source .venv/bin/activate
 
 # 4. 安装依赖
 uv pip install -e .
+
+# 5. 安装playwright
+playwright install
 ```
 
 ### 配置API密钥
@@ -85,6 +88,11 @@ GLM_API_BASE=https://open.bigmodel.cn/api/paas/v4/
 ```
 
 ### 运行示例
+第一次会比较慢，第二次因为有缓存（示例设置了两个小时），速度会很快！
+
+Windows和Mac测试通过。
+
+多模态偶尔会有定位偏差的时候，您可以继续优化提示词或进行其它调整！
 
 ```bash
 cd examples
