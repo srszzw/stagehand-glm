@@ -6,7 +6,7 @@
 
 **基于GLM大模型的渐进式AI浏览器自动化框架**
 
-[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-blue.svg)](https://www.python.org/)
 [![GLM](https://img.shields.io/badge/GLM-4.5V-green.svg)](https://open.bigmodel.cn/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Stagehand](https://img.shields.io/badge/Based%20on-Stagehand-purple.svg)](https://github.com/browserbase/stagehand-python)
@@ -60,7 +60,7 @@
 git clone https://github.com/srszzw/stagehand-glm.git
 cd stagehand-glm
 
-# 2. 安装Python 3.11+ (推荐使用uv)
+# 2. 安装Python 3.11 (python其它版本没试过，推荐使用uv)
 uv python install 3.11
 uv venv .venv --python 3.11
 
