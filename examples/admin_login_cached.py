@@ -264,10 +264,13 @@ async def main():
 
             # 使用多模态Agent处理复杂的树形控件操作
             try:
-                # 创建专门用于UI操作的Agent
+                # 创建专门用于UI操作的Agent（启用缓存）
                 ui_agent = stagehand.agent(
                     provider="openai",
                     model="glm-4.5v",  # 使用多模态模型
+                    enable_cache=True,  # 启用缓存
+                    cache_strategy="adaptive",  # UI操作使用自适应策略
+                    cache_ttl=7200,  # 缓存2小时（UI布局相对稳定）
                     instructions="""你是一个专业的UI操作专家。你需要：
 1. 仔细观察页面上的UI元素，特别是下拉框、树形控件等复杂组件
 2. 识别目标元素的位置和状态
@@ -338,6 +341,61 @@ async def main():
 
         traceback.print_exc()
     finally:
+        # 显示Agent缓存统计信息
+        try:
+            print("\n📊 Agent缓存统计信息:")
+            print("=" * 50)
+
+            # 检查是否有Agent实例
+            agents_with_cache = []
+            if "captcha_agent" in locals() and hasattr(
+                captcha_agent, "get_cache_stats"
+            ):
+                stats = captcha_agent.get_cache_stats()
+                if stats:
+                    agents_with_cache.append(("验证码Agent", stats))
+
+            if "ui_agent" in locals() and hasattr(ui_agent, "get_cache_stats"):
+                stats = ui_agent.get_cache_stats()
+                if stats:
+                    agents_with_cache.append(("UI操作Agent", stats))
+
+            if agents_with_cache:
+                for agent_name, stats in agents_with_cache:
+                    print(f"\n🤖 {agent_name}:")
+                    print(f"   缓存项数量: {stats['total_cache_items']}")
+                    print(f"   缓存命中: {stats['cache_hits']}")
+                    print(f"   缓存未命中: {stats['cache_misses']}")
+                    print(f"   命中率: {stats['hit_rate_percentage']:.1f}%")
+                    print(f"   验证通过: {stats['validation_passes']}")
+                    print(f"   验证失败: {stats['validation_failures']}")
+                    print(
+                        f"   验证成功率: {stats['validation_success_rate_percentage']:.1f}%"
+                    )
+                    print(f"   缓存文件大小: {stats['cache_file_size_kb']:.1f}KB")
+
+                # 计算总体统计
+                total_hits = sum(stats["cache_hits"] for _, stats in agents_with_cache)
+                total_misses = sum(
+                    stats["cache_misses"] for _, stats in agents_with_cache
+                )
+                total_requests = total_hits + total_misses
+
+                if total_requests > 0:
+                    overall_hit_rate = (total_hits / total_requests) * 100
+                    print(f"\n🎯 总体缓存效果:")
+                    print(f"   总请求数: {total_requests}")
+                    print(f"   总命中数: {total_hits}")
+                    print(f"   总体命中率: {overall_hit_rate:.1f}%")
+
+                    if total_hits > 0:
+                        print(f"   💡 缓存为您节省了 {total_hits} 次LLM调用！")
+            else:
+                print("   暂无Agent缓存数据")
+
+        except Exception as e:
+            print(f"显示缓存统计时出错: {e}")
+
         # Close the client
         print("\n🔚 关闭浏览器...")
         await stagehand.close()
