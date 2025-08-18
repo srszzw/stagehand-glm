@@ -75,6 +75,8 @@ uv pip install -e .
 
 # 5. 安装playwright
 playwright install
+
+
 ```
 
 ### 配置API密钥
@@ -98,6 +100,7 @@ Windows和Mac测试通过。
 cd examples
 uv run admin_login_cached.py
 ```
+
 
 **📋 示例功能说明**:
 
@@ -451,6 +454,14 @@ stagehand-python/              # 核心框架
 - 项目主页: [GitHub Repository](https://github.com/srszzw/stagehand-glm)
 - 问题反馈: [Issues](https://github.com/srszzw/stagehand-glm/issues)
 - 联系邮箱: srszzw@163.com
+
+### 微信公众号
+
+关注我们的微信公众号获取最新动态和技术分享：
+
+<div align="center">
+<img src="media/qrcode.jpg" alt="微信公众号二维码" width="200">
+</div>
 
 ---
 
